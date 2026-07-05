@@ -12,15 +12,15 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'sudo docker build -t blog-platform .'
+                sh 'docker build -t blog-platform .'
             }
         }
 
         stage('Deploy') {
             steps {
                 sh '''
-                sudo docker rm -f blog-platform || true
-                sudo docker run -d --name blog-platform -p 8081:80 blog-platform
+                docker rm -f blog-platform || true
+                docker run -d --name blog-platform -p 8081:80 blog-platform
                 '''
             }
         }
